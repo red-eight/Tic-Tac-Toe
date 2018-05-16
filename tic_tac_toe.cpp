@@ -43,6 +43,7 @@ bool Grid::setTile(bool isX, int tileNumber)
 
     if (isFreeCell(row, column)) {
         cells[row][column] = isX ? 'X' : 'O';
+        ++filled;
         return true;
     }
 
@@ -138,11 +139,13 @@ bool Game::step(bool isX)
     }
 
     if (hasWinner()) {
+        std::cout << grid << '\n';
         std::cout << player << " wins!" "\n";
         return false;
     }
 
     else if (isTie()) {
+        std::cout << grid << '\n';
         std::cout << "Draw game!" "\n";
         return false;
     }
